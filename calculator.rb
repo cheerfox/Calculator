@@ -1,27 +1,18 @@
 #An Calculator for add, subtract, multiply, divide
-#2015/03/14
 #Written by Wang Chun-Chi
 
-def is_numeric(num)
-  #check if the input is numeric  
-  if num.to_i == 0 && num != '0' && num.class != Float
-    return false 
-  else
-    return true
-  end
+def is_a_number?(num)
+  num.to_i.to_s == num.to_s || num.to_f.to_s == num.to_s
 end
 
-def valid_operation(operation)
-  #check if th einput operation is valid
+def is_valid_operation?(operation)
   (1..4).cover?(operation.to_i)
 end
 
 def say(msg)
-  #print out msg
   puts "#{msg}"
 end
 
-###### main
 begin
   end_flag = false
   num1 = ''
@@ -31,8 +22,8 @@ begin
   loop do
     say "Please enter the first number: "
     num1 = gets.chomp
-    
-    if is_numeric num1
+
+    if is_a_number?(num1)
       break
     else
       say "******Please enter a number!!******"
@@ -43,7 +34,7 @@ begin
     say "Please enter the second number: "
     num2 = gets.chomp
 
-    if is_numeric num2
+    if is_a_number?(num2)
       break
     else
       say "******Please enter a number!!*******"
@@ -55,7 +46,7 @@ begin
     say "1) add, 2) subtract, 3) multiply, 4) divide"
     operation = gets.chomp
 
-    if valid_operation operation
+    if is_valid_operation? operation
       break
     else
       say "******Enter Valid Operation Number!!*******"
@@ -74,10 +65,10 @@ begin
   end
   say "Answer = #{answer}"
   say "Enter anything to continue or 'N' for exit"
-  end_flag = true if gets.chomp == 'N'
+  leave = true if gets.chomp == 'N'
   say " "
 
-end while !end_flag
+end while !leave
 
 
 
